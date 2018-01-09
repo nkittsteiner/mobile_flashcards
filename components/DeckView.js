@@ -18,7 +18,11 @@ export default class DeckView extends React.Component {
         </TouchableOpacity>
       </View>
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate('QuizView')} style={styles.buttonSecondary}>
+        <TouchableOpacity onPress={() => navigation.navigate('QuizView', {
+          questions,
+          answered: [],
+          correct: 0
+        })} style={styles.buttonSecondary}>
           <Text style={styles.buttonSecondaryText}>Start Quiz</Text>
         </TouchableOpacity>
       </View>

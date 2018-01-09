@@ -3,7 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import  DeckListView  from './DeckListView'
 import AddCardView from './AddCardView'
 import DeckView from './DeckView'
-import { QuizView } from './QuizView'
+import QuizView from './QuizView'
+import QuizResponseView from './QuizResponseView'
 import { TabNav } from './Tabs'
 
 const Stack = StackNavigator({
@@ -21,6 +22,9 @@ const Stack = StackNavigator({
     },
     AddCardView:{
       screen: AddCardView
+    },
+    QuizResponseView: {
+        screen: QuizResponseView
     }
 })
 
