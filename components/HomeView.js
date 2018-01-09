@@ -1,7 +1,7 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation'; 
 import  DeckListView  from './DeckListView'
-import { AddCardView } from './AddCardView'
+import AddCardView from './AddCardView'
 import { DeckView } from './DeckView'
 import { QuizView } from './QuizView'
 import { TabNav } from './Tabs'

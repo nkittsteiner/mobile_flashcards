@@ -9,7 +9,7 @@ export const DeckView = ({ navigation }) => (
         <Text style={styles.labelSubtitle}>Subtitle</Text>
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('AddCardView')} style={styles.buttonPrimary}>
+        <TouchableOpacity onPress={() => navigation.navigate('AddCardView',{ deck: navigation.state.params.deck })} style={styles.buttonPrimary}>
           <Text style={styles.buttonPrimaryText}>Add Card</Text>
         </TouchableOpacity>
       </View>

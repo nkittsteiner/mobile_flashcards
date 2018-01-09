@@ -11,12 +11,3 @@ export const TabNav = TabNavigator({
       screen: NewDeckView
     },
 });
-/*
-export default class Tabs extends React.Component {
-    render() {
-        return (
-            <TabNav />
-        )
-    }
-}
-*/

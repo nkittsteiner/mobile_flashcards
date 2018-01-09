@@ -17,7 +17,8 @@ export default class DeckListView extends React.Component {
 
   refreshState(){
     fetchAll().then(data => {
-      this.setState((state) => JSON.parse(data))      
+      if(data !== undefined)
+        this.setState((state) => JSON.parse(data))
     })
   }
 
