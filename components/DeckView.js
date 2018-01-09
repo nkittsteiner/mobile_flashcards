@@ -2,11 +2,15 @@ import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../styles'
 
-export const DeckView = ({ navigation }) => (
-    <View style={styles.deckContainer}>
+export default class DeckView extends React.Component {
+  render(){
+    const navigation = this.props.navigation
+    const { deck, questions}  = this.props.navigation.state.params
+    return(
+      <View style={styles.deckContainer}>
       <View style={styles.centerContainer}>
-        <Text style={styles.labelTitle}>Title</Text>
-        <Text style={styles.labelSubtitle}>Subtitle</Text>
+        <Text style={styles.labelTitle}>{deck}</Text>
+        <Text style={styles.labelSubtitle}>{`Cards (${questions.length})`}</Text>
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('AddCardView',{ deck: navigation.state.params.deck })} style={styles.buttonPrimary}>
@@ -21,4 +25,6 @@ export const DeckView = ({ navigation }) => (
       <View style={styles.bottomContainer}>
       </View>
     </View>
-  )
+    )
+  }
+}

@@ -29,7 +29,8 @@ export default class DeckListView extends React.Component {
     return(
         <ScrollView>
         { this.state && Object.keys(state).map(x => state[x]).map(x => (
-          <TouchableOpacity key={x.title} onPress={() => navigation.navigate('DeckView',{deck: x.title})} style={styles.neutralList}>
+          <TouchableOpacity key={x.title} onPress={() => 
+            navigation.navigate('DeckView',{deck: x.title, questions: x.questions})} style={styles.neutralList}>
           <Text style={styles.whiteLabelTitle}>{x.title}</Text>
           <Text style={styles.whiteLabelSubtitle}>{`Cards(${x.questions.length})`}</Text>
           </TouchableOpacity>

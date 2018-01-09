@@ -9,7 +9,7 @@ export const QuizView = ({ navigation }) => (
         <Text style={styles.labelSubtitle}>Subtitle</Text>
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('DeckView')} style={styles.buttonCorrect}>
+        <TouchableOpacity onPress={() => navigation.navigate('QuizView')} style={styles.buttonCorrect}>
           <Text style={styles.buttonCorrectText}>Correct</Text>
         </TouchableOpacity>
       </View>
