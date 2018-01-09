@@ -9,7 +9,6 @@ export async function fetchAll() {
         const value = await AsyncStorage.getItem(`@${schema}:${key}`);
         if (value !== null){
           // We have data!!
-          console.log(value);
           return value
         }
       } catch (error) {
