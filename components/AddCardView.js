@@ -46,7 +46,6 @@ export default class AddCardView extends React.Component {
 
   render(){
       const navigation = this.props.navigation
-      console.log(navigation)
 
       return(
         <View style={styles.deckContainer}>

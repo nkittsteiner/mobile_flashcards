@@ -5,13 +5,12 @@ import { styles } from '../styles'
 export default class QuizResponseView extends React.Component {
   render(){
     const navigation = this.props.navigation
-    const { isCorrect, questions, answered, correct, current } = this.props.navigation.state.params
-    const total = questions.length + answered.length
+    const { deck, questions, answered, correct, current } = this.props.navigation.state.params
+    console.log('deck', deck)
+    const total = questions.length + answered.length +1
 
     let _answered = answered
     _answered.push(current)
-
-    console.log(current)
     
     return(
       <View style={styles.deckContainer}>
@@ -21,18 +20,20 @@ export default class QuizResponseView extends React.Component {
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('QuizView', {
+          deck,
           questions,
           answered: _answered,
-          correct: isCorrect ? correct+1 : correct
+          correct: correct + 1
         })} style={styles.buttonCorrect}>
           <Text style={styles.buttonCorrectText}>Correct</Text>
         </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('QuizView', {
+          deck,
           questions,
           answered: _answered,
-          correct: !isCorrect ? correct+1 : correct
+          correct
         })} style={styles.buttonIncorrect}>
           <Text style={styles.buttonIncorrectText}>Incorrect</Text>
         </TouchableOpacity>      

@@ -1,27 +1,47 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
+import { NavigationActions} from 'react-navigation'
 import { styles } from '../styles'
 
 export default class QuizView extends React.Component {
 
-  navigate(isCorrect, current, stop){
+  navigate(deck, current){
     const navigation = this.props.navigation
     const { questions, answered, correct } = this.props.navigation.state.params
+    navigation.navigate('QuizResponseView', {
+      deck,
+      questions,
+      answered,
+      correct,
+      current
+    })
+  }
 
-    if(!stop){
-      navigation.navigate('QuizResponseView', {
-        isCorrect: isCorrect,
-        questions,
-        answered,
-        correct,
-        current
-      })
-    }
+  redirectToDeck(deck, questions){
+    const navigation = this.props.navigation
+    console.log(deck, questions)
+    navigation.navigate('DeckView',{ deck, questions})
+  }
+
+  resetQuiz(deck, questions){
+    const navigation = this.props.navigation
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'QuizView', params: {
+          deck,
+          questions,
+          answered: [],
+          correct: 0
+        }})
+      ]
+    })
+    this.props.navigation.dispatch(resetAction) 
   }
 
   render(){
     const navigation = this.props.navigation
-    const { questions, answered, correct } = this.props.navigation.state.params
+    const { deck, questions, answered, correct } = this.props.navigation.state.params
     let current, question, stop
     const total = questions.length + answered.length
 
@@ -42,14 +62,22 @@ export default class QuizView extends React.Component {
         <Text style={styles.labelSubtitle}>{correct} of {total} correct answers</Text>
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => this.navigate(true, current, stop)} style={styles.buttonCorrect}>
-          <Text style={styles.buttonCorrectText}>Correct</Text>
-        </TouchableOpacity>
-      </View>
-      <View>
-        <TouchableOpacity onPress={() => this.navigate(false, current, stop)} style={styles.buttonIncorrect}>
-          <Text style={styles.buttonIncorrectText}>Incorrect</Text>
-        </TouchableOpacity>      
+        {!stop && (
+          <TouchableOpacity onPress={() => this.navigate(deck, current)} style={styles.buttonPrimary}>
+            <Text style={styles.buttonPrimaryText}>Show Answer</Text>
+          </TouchableOpacity>
+        )}
+        {stop && (
+          <View>
+            <TouchableOpacity onPress={() => this.redirectToDeck(deck, answered)} style={styles.buttonPrimary}>
+              <Text style={styles.buttonPrimaryText}>Back to Deck</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.resetQuiz(deck, answered)} style={styles.buttonSecondary}>
+            <Text style={styles.buttonSecondaryText}>Try Again?</Text>
+          </TouchableOpacity>
+          </View>
+        )}
+
       </View>
       <View style={styles.bottomContainer}>
       </View>
