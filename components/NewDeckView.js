@@ -20,7 +20,7 @@ export default class NewDeckView extends React.Component {
                     questions: []
                 }
                 save(JSON.stringify(myData)).then((e) => {
-                    this.props.navigation.navigate('Home', {deckName})
+                    this.props.navigation.navigate('Home', {deck: deckName, questions: []})
                 })
             }
             else {
@@ -31,7 +31,7 @@ export default class NewDeckView extends React.Component {
                 }
 
                 save(JSON.stringify(decks)).then((e) => {
-                    this.props.navigation.navigate('Home', {deckName})
+                    this.props.navigation.navigate('Home', {deck: deckName, questions: []})
                 })                
             }
         })
