@@ -19,24 +19,17 @@ export default class QuizView extends React.Component {
 
   redirectToDeck(deck, questions){
     const navigation = this.props.navigation
-    console.log(deck, questions)
     navigation.navigate('DeckView',{ deck, questions})
   }
 
   resetQuiz(deck, questions){
     const navigation = this.props.navigation
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: 'QuizView', params: {
-          deck,
-          questions,
-          answered: [],
-          correct: 0
-        }})
-      ]
+    navigation.navigate('QuizView', {
+      deck,
+      questions,
+      answered: [],
+      correct: 0
     })
-    this.props.navigation.dispatch(resetAction) 
   }
 
   render(){
