@@ -2,8 +2,16 @@ import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { NavigationActions} from 'react-navigation'
 import { styles } from '../styles'
+import { clearLocalNotification, setLocalNotification} from '../utils/Notification'
 
 export default class QuizView extends React.Component {
+
+  componentDidMount(){
+    // Means user have practice so disable notifications until tomorrow
+    console.log('Means user have practice so disable notifications until tomorrow')
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
 
   navigate(deck, current){
     const navigation = this.props.navigation
